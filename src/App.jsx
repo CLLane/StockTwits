@@ -1,4 +1,7 @@
 import React, { Component } from "react";
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+import Paper from '@material-ui/core/Paper'
 import "./App.css";
 
 class App extends Component {
@@ -35,21 +38,21 @@ class App extends Component {
   };
   render() {
     return (
-      <>
-        <form>
-          <input
-            type="text"
+      <main>
+        <h1>StockTwits Search</h1>
+        <form className='main_form'>
+          <TextField id="outlined-basic" label="Enter Stock Abbrv" variant="outlined" type="text"
             name="searchQuery"
             value={this.state.searchQuery}
-            onChange={this.handleChange}
-          ></input>
-          <input
+            onChange={this.handleChange}></TextField>
+          <Button variant="contained" color="primary" 
             type="submit"
             onClick={e => this.fetchStockMentions(e)}
-          ></input>
+          > Submit
+          </Button>
         </form>
-        {this.state.searchResults && <div>{this.state.searchResults.messages.map(message => <div>{message.body}</div>)}</div>}
-      </>
+        {this.state.searchResults && <div>{this.state.searchResults.messages.map(message => <Paper variant="outlined" square >{message.body}</Paper>)}</div>}
+      </main>
     );
   }
 }
